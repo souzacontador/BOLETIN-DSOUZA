@@ -227,6 +227,32 @@ tbody td strong{color:var(--ink);font-weight:600;}
 .firma b{display:block;font-weight:700;color:var(--ink);font-size:15px;letter-spacing:.02em;}
 .firma span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
 
+/* ---------- SUSCRIPCIÓN ---------- */
+.suscribe{margin-top:26px;background:linear-gradient(160deg,var(--accent-deep),var(--accent));
+  border-radius:16px;padding:28px;color:#fff;position:relative;overflow:hidden;}
+.suscribe::after{content:"";position:absolute;right:-70px;bottom:-70px;width:220px;height:220px;
+  background:radial-gradient(circle,rgba(16,176,232,.35),transparent 66%);pointer-events:none;}
+.suscribe h3{font-family:var(--serif);font-weight:700;font-size:22px;margin:0 0 6px;letter-spacing:-.01em;}
+.suscribe .s-sub{font-size:14.5px;color:#dceefb;margin:0 0 18px;text-align:left;}
+.s-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;position:relative;z-index:1;}
+.s-field{display:flex;flex-direction:column;gap:5px;}
+.s-field label{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#bfe3f7;}
+.s-field input{font-family:inherit;font-size:15px;padding:11px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.95);color:#14181d;min-height:44px;width:100%;box-sizing:border-box;}
+.s-field input:focus-visible{outline:3px solid var(--cyan);outline-offset:1px;}
+.s-btn{margin-top:14px;width:100%;font-family:inherit;font-size:15.5px;font-weight:700;cursor:pointer;
+  border:0;border-radius:12px;padding:14px 20px;min-height:50px;color:#08324f;
+  background:linear-gradient(160deg,#e8f7ff,#bfe6f9);display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform .15s ease,box-shadow .15s ease;position:relative;z-index:1;}
+.s-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,20,50,.28);}
+.s-btn:focus-visible{outline:3px solid #fff;outline-offset:2px;}
+.s-btn svg{width:20px;height:20px;flex:0 0 auto;}
+.s-legend{margin:14px 0 0;font-size:12.5px;color:#cfe8f8;text-align:left;line-height:1.5;position:relative;z-index:1;}
+.s-ok{display:none;margin-top:12px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+  border-radius:10px;padding:11px 14px;font-size:13.5px;color:#fff;text-align:left;}
+.s-ok.show{display:block;}
+@media (max-width:600px){.s-grid{grid-template-columns:1fr;}}
+
 /* ---------- FOOTER ---------- */
 footer{margin-top:40px;text-align:center;color:var(--muted);font-size:13px;}
 footer .fbrand{font-family:var(--serif);font-weight:700;color:var(--cyan-text);font-size:16px;}
@@ -266,7 +292,7 @@ footer a{color:var(--cyan-text);text-decoration:none;}
   :root{--canvas:#fff;--surface:#fff;--body:#222;--ink:#000;}
   body{background:#fff;}
   .wrap{max-width:100%;padding:0;}
-  .controls,.toc,.filters,.expand-all,.caret,.sec-rule,.toolbar .hint{display:none !important;}
+  .controls,.toc,.filters,.expand-all,.caret,.sec-rule,.toolbar .hint,.suscribe{display:none !important;}
   .hero{box-shadow:none;color:#0a2a4a;background:none;border-bottom:2px solid var(--accent);border-radius:0;margin:0 0 12px;padding:0 0 12px;}
   .hero::after{display:none;}
   .hero .eyebrow,.hero .sub,.hero .note,.hero .brand b,.hero .brand span{color:#0a2a4a;}
@@ -314,6 +340,7 @@ footer a{color:var(--cyan-text);text-decoration:none;}
       <a href="#vencimientos">Vencimientos</a>
       <a href="#comentario">Comentario</a>
       <a href="#cierre">Cierre</a>
+      <a href="#suscribete">Suscríbete</a>
     </div>
   </nav>
 
@@ -743,6 +770,35 @@ footer a{color:var(--cyan-text);text-decoration:none;}
     </div>
   </section>
 
+  <section class="sec" id="suscribete" aria-label="Suscripción al boletín">
+    <div class="suscribe">
+      <h3>¿Le fue útil este boletín?</h3>
+      <p class="s-sub">Reciba el siguiente directo en su WhatsApp cuando salga. Solo llene estos tres datos:</p>
+      <form id="subForm" autocomplete="on">
+        <div class="s-grid">
+          <div class="s-field">
+            <label for="subNombre">Nombre completo</label>
+            <input type="text" id="subNombre" name="nombre" required minlength="5" autocomplete="name" placeholder="Ej. María López García">
+          </div>
+          <div class="s-field">
+            <label for="subCorreo">Correo</label>
+            <input type="email" id="subCorreo" name="correo" required autocomplete="email" placeholder="Ej. maria@empresa.mx">
+          </div>
+          <div class="s-field">
+            <label for="subWhats">No. de WhatsApp</label>
+            <input type="tel" id="subWhats" name="whatsapp" required inputmode="numeric" pattern="[0-9\s\-\(\)\+]{10,15}" autocomplete="tel" placeholder="Ej. 686 123 45 67">
+          </div>
+        </div>
+        <button type="submit" class="s-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.33 4.95L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm0 18.1h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.26-4.34c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
+          Suscríbete y te envío el siguiente boletín cuando salga
+        </button>
+      </form>
+      <p class="s-legend">Se te agregará al grupo de WhatsApp "DSouza Consultores" donde recibirás el boletín y podrás tener acceso a tips e información fiscal de utilidad.</p>
+      <div class="s-ok" id="subOk" role="status">✓ Se abrió WhatsApp con su solicitud lista: solo pulse <b>Enviar</b> para completar la suscripción. Si no se abrió, escríbanos al 686 256 72 93 con sus datos.</div>
+    </div>
+  </section>
+
   <footer>
     <p class="fbrand">DSouza Consultores Fiscales</p>
     <p>Av. Molino del Rey #311, Colonia Insurgentes Este, C.P. 21280<br><a href="mailto:daniel@dsouzaconsultores.mx">daniel@dsouzaconsultores.mx</a></p>
@@ -846,6 +902,24 @@ footer a{color:var(--cyan-text);text-decoration:none;}
       }
     });
   });
+
+  /* ---------- Suscripción vía WhatsApp ---------- */
+  var subForm=document.getElementById('subForm');
+  if(subForm){
+    subForm.addEventListener('submit',function(e){
+      e.preventDefault();
+      var n=document.getElementById('subNombre').value.trim();
+      var c=document.getElementById('subCorreo').value.trim();
+      var w=document.getElementById('subWhats').value.replace(/[^\d]/g,'');
+      var msg='Hola, C.P. Souza. Quiero suscribirme al Boletín Fiscal Semanal.\n'
+        +'Nombre completo: '+n+'\n'
+        +'Correo: '+c+'\n'
+        +'WhatsApp: '+w+'\n'
+        +'Acepto que se me agregue al grupo "DSouza Consultores".';
+      window.open('https://wa.me/526862567293?text='+encodeURIComponent(msg),'_blank','noopener');
+      document.getElementById('subOk').classList.add('show');
+    });
+  }
 
   /* ---------- Recalcular alturas al redimensionar ---------- */
   var rt;
